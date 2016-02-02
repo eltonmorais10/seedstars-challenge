@@ -1,0 +1,83 @@
+<style>
+	.input-div{
+		margin: 10 auto;
+		width: 200px;
+	}
+	.button-div{
+		margin: 10 auto;
+		width: 75px;
+	}
+	.input{
+		padding: 2px;
+		height: 30px;
+		width: 200px;
+	}
+	#add-user{
+		background-color: #dcdcdc;
+		border: 1px solid black;
+		height: 30px;
+		width: 75px;
+	}
+	#error-message{
+		background-color: #ff0033; 
+		color: #fff;
+		display: none;
+		margin: 10 auto; 
+		padding: 5px; 
+		width: 190px; 
+		white-space: normal;
+	}
+	.missing-val{
+		border: 1px solid #ff0033;
+		padding: 3px;
+	}
+</style>
+<div class="blue">Hello <?=$data['name']?></div>
+
+<div id="error-message">
+</div>
+<div class="input-div">
+	<input id="email" class="input" type="text" placeholder="Email">
+</div>
+<div class="input-div">
+	<input id="username" class="input" type="text" placeholder="Username">
+</div>
+<div class="button-div">
+	<input id="add-user" type="button" value="Add User" style="cursor: pointer;">
+</div>
+
+<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script>
+	$("#add-user").click(function(){
+		$("#error-message").fadeOut("slow");
+		var email = $("#email").val();
+		var username = $("#username").val();
+
+		// if any value is missing its input will be highlighted
+		if (email === "" || username === "") {
+			if (email === "") {
+				$("#email").addClass("missing-val");
+			} else {
+				$("#email").removeClass("missing-val");
+			}
+
+			if (username === "") {
+				$("#username").addClass("missing-val");
+			} else {
+				$("#username").removeClass("missing-val");
+			}
+		// if all the input are filled than test the email value
+		} else {
+			$("#email").removeClass("missing-val");
+			$("#username").removeClass("missing-val");
+
+			var re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+			if(!re.test($("#email").val())){
+				$("#error-message").text("Error! Email invalid.").fadeIn("slow");
+			} else {
+				alert("email certo");
+			}	
+		}
+	});
+</script>
