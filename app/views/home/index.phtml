@@ -1,83 +1,78 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 <style>
-	.input-div{
-		margin: 10 auto;
-		width: 200px;
+	.material-icons {
+	  font-family: 'Material Icons';
+	  font-weight: normal;
+	  font-style: normal;
+	  font-size: 20px;  /* Preferred icon size */
+	  display: inline-block;
+	  width: 1em;
+	  height: 1em;
+	  line-height: 1;
+	  text-transform: none;
+	  letter-spacing: normal;
+	  word-wrap: normal;
+	  white-space: nowrap;
+	  direction: ltr;
+
+	  /* Support for all WebKit browsers. */
+	  -webkit-font-smoothing: antialiased;
+	  /* Support for Safari and Chrome. */
+	  text-rendering: optimizeLegibility;
+
+	  /* Support for Firefox. */
+	  -moz-osx-font-smoothing: grayscale;
+
+	  /* Support for IE. */
+	  font-feature-settings: 'liga';
 	}
-	.button-div{
-		margin: 10 auto;
-		width: 75px;
+	body{
+		color: #2F4F4F;
+		font-family: 'Raleway',sans-serif;
 	}
-	.input{
-		padding: 2px;
-		height: 30px;
-		width: 200px;
+	#title{
+		background-color: #707070;
+		background: -webkit-linear-gradient(#707070, #f6f6f6); /* For Safari 5.1 to 6.0 */
+	    background: -o-linear-gradient(#707070, #f6f6f6); /* For Opera 11.1 to 12.0 */
+	    background: -moz-linear-gradient(#707070, #f6f6f6); /* For Firefox 3.6 to 15 */
+	    background: linear-gradient(#707070, #f6f6f6); /* Standard syntax */
+		height: 100px;
+		padding-top: 10px;
+		text-align: center;
 	}
-	#add-user{
-		background-color: #dcdcdc;
-		border: 1px solid black;
-		height: 30px;
-		width: 75px;
+	#h3{
+		background-color: #f6f6f6;
+		height: calc(100% - 130px);
+		padding-top: 16px;
+		text-align: center;
 	}
-	#error-message{
-		background-color: #ff0033; 
-		color: #fff;
-		display: none;
-		margin: 10 auto; 
-		padding: 5px; 
-		width: 190px; 
-		white-space: normal;
-	}
-	.missing-val{
-		border: 1px solid #ff0033;
-		padding: 3px;
+	a{
+		color: #551a8b;
+		text-decoration: none;
 	}
 </style>
-<div class="blue">Hello <?=$data['name']?></div>
 
-<div id="error-message">
+<div id="title">
+	<h1>HELLO WORLD!</h1>
 </div>
-<div class="input-div">
-	<input id="email" class="input" type="text" placeholder="Email">
-</div>
-<div class="input-div">
-	<input id="username" class="input" type="text" placeholder="Username">
-</div>
-<div class="button-div">
-	<input id="add-user" type="button" value="Add User" style="cursor: pointer;">
+<div id="h3">
+	<h3>Welcome to my php challenge by Seedstars and executed by Elton Morais, yes, myself!</h3>
+	<div id="links" style="width: 400px; margin: 0 auto; margin-top: 50px;">
+		<div style="width: 200px;float: left;">
+			<div style="float: left;padding-left: 15px;margin-top: -2px;">
+				<i class="material-icons" style="position:absolute;">note_add</i>
+			</div> 
+			<a href="/public/home/add">Add a new client</a>
+		</div>
+		<div style="width: 200px;float: left;">
+			<div style="float: left;padding-left: 25px;margin-top: -2px;">
+				<i class="material-icons" style="position:absolute;">list</i> 
+			</div>
+			<a href="/public/home/listAll">List all clients</a>
+		</div> 
+	</div>
 </div>
 
-<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
-<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script>
-	$("#add-user").click(function(){
-		$("#error-message").fadeOut("slow");
-		var email = $("#email").val();
-		var username = $("#username").val();
-
-		// if any value is missing its input will be highlighted
-		if (email === "" || username === "") {
-			if (email === "") {
-				$("#email").addClass("missing-val");
-			} else {
-				$("#email").removeClass("missing-val");
-			}
-
-			if (username === "") {
-				$("#username").addClass("missing-val");
-			} else {
-				$("#username").removeClass("missing-val");
-			}
-		// if all the input are filled than test the email value
-		} else {
-			$("#email").removeClass("missing-val");
-			$("#username").removeClass("missing-val");
-
-			var re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-			if(!re.test($("#email").val())){
-				$("#error-message").text("Error! Email invalid.").fadeIn("slow");
-			} else {
-				alert("email certo");
-			}	
-		}
-	});
 </script>
