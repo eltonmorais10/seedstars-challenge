@@ -78,7 +78,7 @@
 			if(!re.test($("#email").val())){
 				$("#error-message").text("Error! Email invalid.").fadeIn("slow");
 			} else {
-				alert("email certo");
+				window.location.href = "/public/home/addrecord/" + email + "/" + username;
 			}	
 		}
 	});

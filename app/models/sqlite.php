@@ -4,7 +4,7 @@ class sqlite extends SQLite3
 
 	function __construct()
   	{	
-    	$this->open('test.db');
+    	$this->open('challenge.db');
   	}
 
   	public function createChallengeTable($db)
