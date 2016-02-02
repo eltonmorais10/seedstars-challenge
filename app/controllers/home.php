@@ -10,16 +10,19 @@ class Home extends Controller
 
 	public function listAll()
 	{
+		$dataArray = [];
 		// create new sqlite object that will open or create a new db called challenge
 		$db = $this->model('sqlite');
 
-		$sql = 'SELECT * FROM clients;';
-		$return = $db->exec($sql);
-
-		print_r($return);
+		$sql = 'SELECT EMAIL, NAME FROM clients;';
+		$return = $db->query($sql);
+		while ($row = $return->fetchArray()) {
+		    $dataArray.push($row["EMAIL"], $row["NAME"]);
+		}
+		$db->close();
 
 		// specify the view
-		$this->view('home/list');
+		$this->view('home/list', ['clients' => $dataArray]);
 	}
 
 	public function add()
@@ -40,7 +43,14 @@ class Home extends Controller
 
 	public function addRecord($email = '', $username = '')
 	{
-		echo $email;
-		echo $username;
+		// create new sqlite object that will open or create a new db called challenge
+		$db = $this->model('sqlite');
+		
+		// if table clients doesn't exist than create it 
+		$sql = 'INSERT INTO clients (EMAIL, NAME) VALUES ("' . $email . '","' . $username . '");';
+		$return = $db->exec($sql);
+		$db->close();
+
+		echo json_encode(array('status' => 'success'));
 	}
 }

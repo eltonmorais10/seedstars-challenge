@@ -51,7 +51,7 @@
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script>
-	$("#add-user").click(function(){
+	$("#add-user").click(function(e){
 		$("#error-message").fadeOut("slow");
 		var email = $("#email").val();
 		var username = $("#username").val();
@@ -78,7 +78,21 @@
 			if(!re.test($("#email").val())){
 				$("#error-message").text("Error! Email invalid.").fadeIn("slow");
 			} else {
-				window.location.href = "/public/home/addrecord/" + email + "/" + username;
+				var url = "/public/home/addrecord/" + email + "/" + username;
+				$.ajax({
+					url: url,
+					dataType: 'json',
+					type: 'post',
+					success: function(data) {
+						if (data['status'] === 'success') {
+							$("#error-message").css("background-color", "#66cd00").text("User added with success!").fadeIn("slow");
+						} else {
+							$("#error-message").text("Error! " + data['message']).fadeIn("slow");
+							$("#email").val("");
+							$("#username").val("");
+						}
+					}
+				});
 			}	
 		}
 	});
