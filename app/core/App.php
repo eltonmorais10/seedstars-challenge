@@ -10,7 +10,7 @@ class App
 	public function __construct()
 	{
 		$url = $this->parseUrl();
-
+		
 		if (file_exists('../app/controllers/' . $url[0] . '.php')) {
 			$this->controller = $url[0];
 			unset($url[0]);
@@ -24,7 +24,7 @@ class App
 				$this->method = $url[1];
 				unset($url[1]);
 			}
-		}
+		} 
 
 		$this->params = $url ? array_values($url) : [];
 
