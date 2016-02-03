@@ -24,9 +24,14 @@
 </div>
 <div id="content">
 	<h3 style="padding-left: 10px;">All clients</h3>
-	<ul>
-	<?php foreach($data["clients"] as $client) {
-		echo "<li> <b>EMAIL:</b> " . $client[0] . "<b> | USERNAME:</b> " . $client[1] ."</li>";
+	<?php 
+	if (count($data["clients"]) == 0) {
+		echo "<span>No clients registered</span>";
+	} else {
+		echo "<ul>";
+		foreach($data["clients"] as $client) {
+			echo "<li> <b>EMAIL:</b> " . $client[0] . "<b> | USERNAME:</b> " . $client[1] ."</li>";
+		} 
+		echo "</ul>";
 	} ?>
-	</ul>
 </div>
